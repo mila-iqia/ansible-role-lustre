@@ -69,6 +69,12 @@
 - name: Flush handlers
   ansible.builtin.meta: flush_handlers
 
+- name: Enable and start LNet
+  ansible.builtin.systemd_service:
+    name: lnet.service
+    enabled: true
+    state: started
+
 - name: Mount Lustre file systems
   ansible.posix.mount:
     src: "{{ item.src }}"
